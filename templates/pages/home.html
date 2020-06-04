@@ -71,6 +71,9 @@
                 } else {
                     alert("Wystąpił błąd. Spróbuj ponownie.")
                 }
+            } else if (xhr.status === 401) {
+                alert('Zaloguj się, aby wysłać tweeta.')
+                window.location.href = '/login'
             }
         };
         xhr.onerror = function() {
