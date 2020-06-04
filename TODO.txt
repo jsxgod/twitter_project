@@ -1,0 +1,17 @@
+1. Użytkownicy
+    login
+    rejestracja
+    wylogowanie (profiL)
+    profil: info, bio, zdjecie, twitty, following
+
+    tablica z twittami (strona główna?)
+
+2. Twitty
+    pisanie
+    tylko tekstowo czy media też?
+    usuwanie
+    przekazywanie dalej? (może)
+
+3. Obserwowanie kogoś
+
+4. DMs, notyfikacje? jeśli starczy czasu
