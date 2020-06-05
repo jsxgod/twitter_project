@@ -113,15 +113,60 @@
     loadTweets(tweetsContainerElement);
 
     function likeButton(tweet){
-        return "<button class='btn btn-primary' onclick=handleLikeButton(" + tweet.id + "," + tweet.likes + ")>Like</button>"
+        return "<button class='btn btn-primary btn-sm' onclick=handleLikeButton(" + tweet.id + "," + tweet.likes + ",'like'"+")>" + tweet.likes + " Likes</button>"
     }
 
-    function handleLikeButton(tweet_id, currentCount){
-        console.log(tweet_id, currentCount)
+     function unlikeButton(tweet){
+        return "<button class='btn btn-outline-danger' onclick=handleLikeButton(" + tweet.id + "," + tweet.likes + ",'unlike'"+")>Unlike</button>"
+    }
+
+     function retweetButton(tweet){
+        return "<button class='btn btn-outline-success' onclick=handleLikeButton(" + tweet.id + "," + tweet.likes + ",'retweet'"+")>Retweet</button>"
+    }
+
+    function handleLikeButton(tweet_id, currentCount, action){
+        console.log(tweet_id, currentCount);
+        const url = "/api/tweets/action";
+        const method="POST";
+        const data = JSON.stringify({
+            id: tweet_id,
+            action: action
+        });
+        const xhr = new XMLHttpRequest();
+        const csrftoken = getCookie('csrftoken');
+        xhr.open(method, url);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest");
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        xhr.onload = function () {
+            console.log(xhr.status, xhr.response);
+            loadTweets(tweetsContainerElement);
+        };
+        xhr.send(data)
     }
 
     function formatTweetElement(tweet) {
-        return "<div class='col-12 col-md-10 mx-auto border rounded py-3 mb-4 tweet' id='tweet-" + tweet.id + "'><p>" + tweet.content + "</p><div class='btn-group'>" + likeButton(tweet) + "</div></div>"
+        return "<div class='col-12 col-md-10 mx-auto border rounded py-3 mb-4 tweet' id='tweet-"
+            + tweet.id + "'><p>" + tweet.content + "</p><div class='btn-group'>"
+            + likeButton(tweet) + unlikeButton(tweet) + retweetButton(tweet)
+            +"</div></div>"
+    }
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
     }
     </script>
 {% endblock content %}
