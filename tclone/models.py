@@ -5,6 +5,7 @@ from django.db import models
 
 User = settings.AUTH_USER_MODEL
 
+
 class Tweet(models.Model):
     # ukryte pole przez Django
     # id  = models.AutoField(primary_key=True)
