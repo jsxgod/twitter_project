@@ -32,6 +32,9 @@ def tweet_create_view(request, *args, **kwargs):
 @api_view(['GET'])
 def tweet_list_view(request, *args, **kwargs):
     qs = Tweet.objects.all()
+    username = request.GET.get('username')
+    if username is not None:
+        qs = qs.filter(user__username__iexact=username)
     serializer = TweetSerializer(qs, many=True)
 
     return Response(serializer.data)
@@ -91,7 +94,7 @@ def tweet_action_view(request, *args, **kwargs):
         elif action == "retweet":
             new_tweet = Tweet.objects.create(user=request.user, parent=obj, content=content)
             serializer = TweetSerializer(new_tweet)
-            return Response(serializer.data, status=200)
+            return Response(serializer.data, status=201)
 
     return Response({"message: Tweet action completed."}, 200)
 

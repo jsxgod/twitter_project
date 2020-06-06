@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {TweetsComponent} from "./tweets";
+import {TweetsComponent, TweetDetailComponent} from "./tweets";
 
 const appElement = document.getElementById('root');
 
 if (appElement) {
-    console.log('test1')
     ReactDOM.render(
       <React.StrictMode>
         <App />
@@ -19,9 +18,17 @@ if (appElement) {
 
 const tweetsElement = document.getElementById("tweets");
 if (tweetsElement) {
-    console.log('test');
-    ReactDOM.render(<TweetsComponent />, tweetsElement)
+    console.log(tweetsElement.dataset);
+    ReactDOM.render(React.createElement(TweetsComponent, tweetsElement.dataset), tweetsElement)
 }
+
+const tweetDetailElements = document.querySelectorAll(".tweets-detail");
+tweetDetailElements.forEach(container=> {
+    ReactDOM.render(
+        React.createElement(TweetDetailComponent, container.dataset),
+        container
+    );
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
