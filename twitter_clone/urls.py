@@ -24,7 +24,7 @@ import tclone.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', tclone.views.home_view),
-    path('react/', TemplateView.as_view(template_name='react.html')),
+    path('react/', TemplateView.as_view(template_name='react_django.html')),
     path('create-tweet', tclone.views.tweet_create_view),
     path('tweets/', tclone.views.tweet_list_view),
     path('tweets', tclone.views.tweet_list_view),

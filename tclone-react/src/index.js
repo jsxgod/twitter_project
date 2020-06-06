@@ -3,16 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {TweetsComponent} from "./tweets";
 
-const appElement = document.getElementById('root')
+const appElement = document.getElementById('root');
 
 if (appElement) {
+    console.log('test1')
     ReactDOM.render(
       <React.StrictMode>
         <App />
       </React.StrictMode>,
         appElement
     );
+}
+
+const tweetsElement = document.getElementById("tweets");
+if (tweetsElement) {
+    console.log('test');
+    ReactDOM.render(<TweetsComponent />, tweetsElement)
 }
 
 // If you want your app to work offline and load faster, you can change

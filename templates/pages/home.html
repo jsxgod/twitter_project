@@ -19,18 +19,22 @@
         </div>
     </div>
 
-    <div class='row' id="tweets">
-        Replace me
+    <div id="tweets">
+        React
+    </div>
+
+    <div class='row' id="tweets-django">
+        django
     </div>
 
     <script>
 
-    const tweetsContainerElement = document.getElementById("tweets");
+    const tweetsContainerElement = document.getElementById("tweets-django");
 
     function handleTweetFormError(message, display){
-        var myErrorDiv = document.getElementById("tweet-create-form-error")
+        var myErrorDiv = document.getElementById("tweet-create-form-error");
         if (display === true){
-            myErrorDiv.setAttribute("class", "d-block alert alert-danger")
+            myErrorDiv.setAttribute("class", "d-block alert alert-danger");
             myErrorDiv.innerText = message
         } else{
             myErrorDiv.setAttribute("class", "d-none alert alert-danger")
