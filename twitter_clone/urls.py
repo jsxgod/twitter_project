@@ -19,17 +19,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
 
-import tclone.views
+import tclone.views as views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', tclone.views.home_view),
-    path('react/', TemplateView.as_view(template_name='react_django.html')),
-    path('create-tweet', tclone.views.tweet_create_view),
-    path('tweets/', tclone.views.tweet_list_view),
-    path('tweets', tclone.views.tweet_list_view),
-    path('tweets/<int:tweet_id>', tclone.views.tweet_detail_view),
-    path('api/tweets/', include('tclone.urls'))
+    path('', views.local_tweets_list_view),
+    path('<int:tweet_id>', views.local_tweets_detail_view),
+    path('profile/<str:username>', views.local_tweets_profile_view),
+    path('api/tweets/', include('tclone.api.urls'))
 ]
 
 if settings.DEBUG:
