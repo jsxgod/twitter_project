@@ -17,4 +17,4 @@ def local_tweets_detail_view(request, tweet_id, *args, **kwargs):
 
 
 def local_tweets_profile_view(request, username, *args, **kwargs):
-    return render(request, "tweets/profile.html", context={"profile_username": username})
+    return render(request, "tweets/../templates/profiles/profile.html", context={"profile_username": username})

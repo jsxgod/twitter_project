@@ -13,20 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls.static import static
-from django.conf import settings
-from django.views.generic import TemplateView
 
+import accounts.views as acc_views
 import tclone.views as views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.local_tweets_list_view),
+    path('login', acc_views.login_view),
+    path('register', acc_views.register_view),
+    path('logout', acc_views.logout_view),
     path('<int:tweet_id>', views.local_tweets_detail_view),
-    path('profile/<str:username>', views.local_tweets_profile_view),
-    path('api/tweets/', include('tclone.api.urls'))
+    path('profile/', include('profiles.urls')),
+    path('api/tweets/', include('tclone.api.urls')),
+    path('api/profile/', include('profiles.api.urls'))
 ]
 
 if settings.DEBUG:
