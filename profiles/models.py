@@ -21,7 +21,7 @@ class Profile(models.Model):
     followers = models.ManyToManyField(User, related_name='following', blank=True)
 
 
-def user_did_save(sender, instance, created, *args, **kwags):
+def user_did_save(sender, instance, created, *args, **kwargs):
     if created:
         Profile.objects.get_or_create(user=instance)
 

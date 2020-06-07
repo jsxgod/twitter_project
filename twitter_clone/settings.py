@@ -23,9 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'm_m0x^nun0gvy6$p1nz^@$t78wu^z0=f4s#%p@2k*t4i6c=rgk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-#ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['*']
 LOGIN_URL = "/login"
 MAX_TWEET_LENGTH = 240
@@ -150,9 +149,9 @@ if DEBUG:
     DEFAULT_RENDERER_CLASSES += [
         'rest_framework.renderers.BrowsableAPIRenderer'
     ]
-    DEFAULT_AUTHENTICATION_CLASSES += [
-        'twitter_clone.rest_api.dev.DevAuthentication'
-    ]
+#    DEFAULT_AUTHENTICATION_CLASSES += [
+#        'twitter_clone.rest_api.dev.DevAuthentication'
+#    ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication'

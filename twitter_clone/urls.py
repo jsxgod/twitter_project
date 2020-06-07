@@ -22,8 +22,9 @@ import accounts.views as acc_views
 import tclone.views as views
 
 urlpatterns = [
+    path('', views.home_view),
     path('admin/', admin.site.urls),
-    path('', views.local_tweets_list_view),
+    path('global', views.local_tweets_list_view),
     path('login', acc_views.login_view),
     path('register', acc_views.register_view),
     path('logout', acc_views.logout_view),

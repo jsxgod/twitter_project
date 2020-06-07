@@ -18,7 +18,6 @@ if (appElement) {
 
 const tweetsElement = document.getElementById("tweets");
 if (tweetsElement) {
-    console.log(tweetsElement.dataset);
     ReactDOM.render(React.createElement(TweetsComponent, tweetsElement.dataset), tweetsElement)
 }
 
@@ -29,6 +28,7 @@ tweetDetailElements.forEach(container=> {
         container
     );
 });
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
