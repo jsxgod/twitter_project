@@ -16,6 +16,8 @@ User = get_user_model()
 @permission_classes([IsAuthenticated])
 def user_follow_view(request, username, *args, **kwargs):
     current_user = request.user
+    if current_user.username == username:
+        return Response({"count": current_user.profile.followers.all().count()}, status=200)
     qs = User.objects.filter(username=username)
     if not qs.exists():
         return Response({}, status=404)

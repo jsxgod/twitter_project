@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {apiTweetList} from "./lookup";
+import {apiTweetFeed} from "./lookup";
 import {Tweet} from "./tweet"
 
 
-export function TweetsList(props){
+export function FeedList(props){
   const [tweetsInit, setTweetsInit] = useState([]);
   const [tweets, setTweets] = useState([]);
   const [nextUrl, setNextUrl] = useState(null);
@@ -25,7 +25,7 @@ export function TweetsList(props){
                 setTweetsDidLoad(true);
             }
         };
-    apiTweetList(props.username, handleTweetListLookup)
+    apiTweetFeed(handleTweetListLookup)
     }
   }, [tweetsInit, tweetsDidLoad, setTweetsDidLoad, props.username]);
 
@@ -50,7 +50,7 @@ export function TweetsList(props){
                   setTweets(newTweets);
               }
           };
-          apiTweetList(props.username, handleLoadNextResponse, nextUrl)
+          apiTweetFeed(handleLoadNextResponse, nextUrl)
       }
   };
 
